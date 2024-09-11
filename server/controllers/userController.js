@@ -1,14 +1,8 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import { createToken, verifyToken } from "../utils/token.js";
-import fs from 'fs';
+import removeImage from "../utils/removeImage.js";
 
-function removeImage(image) {
-    fs.unlinkSync("images/" + image, (error) => {
-        if (error) console.log('unable to delete image');
-        else console.log('image deleted')
-    });
-}
 
 // Sign up
 export const signup = async (req, res) => {

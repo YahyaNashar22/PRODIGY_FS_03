@@ -8,6 +8,7 @@ import dbConnection from './utils/dbConnection.js';
 import userRouter from './routes/userRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import categoryRouter from './routes/categoryRoutes.js';
+import reviewRouter from './routes/reviewRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users', userRouter);
 app.use('/products', productRouter);
 app.use('/category', categoryRouter);
+app.use('/reviews', reviewRouter);
 
 
 app.listen(process.env.PORT, (error) => {
