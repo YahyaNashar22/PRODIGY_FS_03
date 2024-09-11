@@ -106,17 +106,20 @@ export const getAllProducts = async (req, res) => {
         const { searchQuery, categoryId } = req.body;
         const query = searchQuery ? searchQuery.trim() : "";
 
-        const products = await Product.find({
+        // Create the search criteria
+        let searchCriteria = {
             $or: [
                 { name: { $regex: query, $options: 'i' } },
                 { description: { $regex: query, $options: 'i' } }
             ]
-        }).populate(["categoryId", "reviews"]);
+        };
 
         // If a category is provided, add it to the criteria
         if (categoryId) {
             searchCriteria.categoryId = categoryId;
         }
+
+        const products = await Product.find(searchCriteria).populate(["categoryId", "reviews"]);
 
         return res.status(200).json({
             message: "products found successfully",
