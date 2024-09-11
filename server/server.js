@@ -6,6 +6,8 @@ import bodyParser from 'body-parser';
 
 import dbConnection from './utils/dbConnection.js';
 import userRouter from './routes/userRoutes.js';
+import productRouter from './routes/productRoutes.js';
+import categoryRouter from './routes/categoryRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -24,7 +26,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes for managing models
-app.use('/users', userRouter)
+app.use('/users', userRouter);
+app.use('/products', productRouter);
+app.use('/category', categoryRouter);
 
 
 app.listen(process.env.PORT, (error) => {
