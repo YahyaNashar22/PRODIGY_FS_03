@@ -36,9 +36,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        const user = await User.findOne({ username });
-        // TODO: un-comment after building all schemas
-        // .populate(["favorites", "orderHistory"]);
+        const user = await User.findOne({ username }).populate(["favorites", "orderHistory"]);
         if (!user) return res.status(404).json({
             message: "username not found!"
         });

@@ -5,7 +5,8 @@ const { Schema, model } = mongoose;
 const orderSchema = new Schema({
     status: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
     totalPrice: {
         type: Number,

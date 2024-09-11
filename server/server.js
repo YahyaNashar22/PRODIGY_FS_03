@@ -9,6 +9,7 @@ import userRouter from './routes/userRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import categoryRouter from './routes/categoryRoutes.js';
 import reviewRouter from './routes/reviewRoutes.js';
+import orderRouter from './routes/orderRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -31,6 +32,7 @@ app.use('/users', userRouter);
 app.use('/products', productRouter);
 app.use('/category', categoryRouter);
 app.use('/reviews', reviewRouter);
+app.use('/orders', orderRouter);
 
 
 app.listen(process.env.PORT, (error) => {

@@ -1,4 +1,5 @@
 import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 import removeImage from "../utils/removeImage.js";
 
 // create product
@@ -128,6 +129,43 @@ export const getAllProducts = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({ message: "problem fetching products!", error: error.message })
+        console.log(error)
+    }
+}
+
+// add to favorites
+export const addToFavorites = async (req, res) => {
+    try {
+        const { productId, userId } = req.body;
+        const product = await Product.findById(productId);
+        if (!product) return res.status(404).send('product does not exists')
+        const user = await User.findById(userId);
+
+        await User.findByIdAndUpdate(userId, {
+            favorites: [...user.favorites, productId]
+        }, { new: true });
+
+        res.status(200).send('added to favorites successfully')
+    } catch (error) {
+        res.status(500).json({ message: "problem adding product to favorites!", error: error.message })
+        console.log(error)
+    }
+}
+
+// remove from favorites
+export const removeFromFavorites = async (req, res) => {
+    try {
+        const { productId, userId } = req.body;
+        const product = await Product.findById(productId);
+        if (!product) return res.status(404).send('product does not exists')
+
+        await User.findByIdAndUpdate(userId, {
+            $pull: { favorites: productId }
+        }, { new: true });
+
+        res.status(200).send('removed from favorites successfully')
+    } catch (error) {
+        res.status(500).json({ message: "problem removing product to favorites!", error: error.message })
         console.log(error)
     }
 }
