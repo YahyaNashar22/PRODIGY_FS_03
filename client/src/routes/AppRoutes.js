@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import HeaderFooterOutlet from "./HeaderFooterOutlet.js";
 import Loading from "../components/Loading.js";
+import NotFound from "../components/NotFound.js";
 
 // pages imports -- lazy
 const LazyHome = lazy(() => import("../pages/Home.js"))
@@ -16,7 +17,14 @@ const AppRoutes = () => {
                         <LazyHome />
                     </Suspense>
                 } />
+
             </Route>
+
+            { /* Dashboard Protected Route }
+
+            { /* Not Found Route */}
+            <Route path="/*" element={<NotFound />} />
+
         </Routes>
     )
 }
