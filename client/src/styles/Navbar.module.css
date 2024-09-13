@@ -21,6 +21,7 @@
 .link {
   margin-right: 20px;
   font-size: 18px;
+  text-align: center;
 }
 
 /* Styling the NavLink components */
@@ -35,8 +36,13 @@
 
 /* Hover effect for NavLinks */
 .link a:hover {
-  background-color: #3498db;
+  background-color: var(--secondary-blue);
   color: #fff;
+}
+
+.active {
+  background-color: var(--secondary-blue);
+  color: #fff !important;
 }
 
 /* Styling the Sign In button */

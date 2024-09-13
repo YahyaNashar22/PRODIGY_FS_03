@@ -1,10 +1,14 @@
 /* Logo wrapper */
 .wrapper {
   display: flex;
+  position: fixed;
+  top: 0;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
   background-color: var(--background-color);
+  z-index: 100;
+  width: 100%;
 }
 
 /* Logo section */
@@ -41,4 +45,18 @@
 .subTitle {
   font-size: 16px;
   color: var(--secondary-accent);
+}
+
+.responsiveNavBars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 20px 10px;
 }

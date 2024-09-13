@@ -7,12 +7,12 @@ const Navbar = () => {
     return (
         <nav className={styles.wrapper}>
             <ul className={styles.links}>
-                <li className={styles.link}> <NavLink to='/'>Home</NavLink></li>
-                <li className={styles.link}> <NavLink to='/store'>Store</NavLink></li>
-                <li className={styles.link}> <NavLink to='/about-us'>About us</NavLink></li>
-                <li className={styles.link}> <NavLink to='/contact-us'>Contact us</NavLink></li>
+                <li className={styles.link}> <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/'>Home</NavLink></li>
+                <li className={styles.link}> <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/store'>Store</NavLink></li>
+                <li className={styles.link}> <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/about-us'>About us</NavLink></li>
+                <li className={styles.link}> <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/contact-us'>Contact us</NavLink></li>
             </ul>
-            <Link to="/signin" className={styles.singIn}>Sign in</Link>
+            <Link to="/sign-in-up" className={styles.singIn}>Sign in</Link>
         </nav>
     )
 }

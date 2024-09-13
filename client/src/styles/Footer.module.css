@@ -42,7 +42,7 @@
 
   /* Hover effects on the titles */
   .projectCode:hover, .devName:hover, .techStack:hover {
-    color: #2ecc71;
+    color: var(--primary-green);
   }
   
   /* Responsive design */
