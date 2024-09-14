@@ -9,6 +9,12 @@ const ContactForm = () => {
         content: ''
     });
 
+    const whatsappNumber = process.env.REACT_APP_WP_NUMBER;
+
+    const whatsappMessage = `Subject: ${formValues.subject}\nContent:\n${formValues.content}`;
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({
@@ -19,12 +25,12 @@ const ContactForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here (e.g., send data to a server or log it)
-        console.log("Form submitted:", formValues);
+        window.open(whatsappUrl, '_blank')
     };
 
+
     return (
-        <form className={styles.wrapper}>
+        <div className={styles.wrapper}>
 
             <Box
                 component="form"
@@ -77,6 +83,7 @@ const ContactForm = () => {
                 <Button
                     type="submit"
                     variant="contained"
+                    onClick={handleSubmit}
                     sx={{
                         mt: 2, backgroundColor: 'var(--primary-blue)', '&:hover': {
                             backgroundColor: 'var(--secondary-blue)',
@@ -86,7 +93,7 @@ const ContactForm = () => {
                     Send!
                 </Button>
             </Box>
-        </form >
+        </div >
 
     );
 };
