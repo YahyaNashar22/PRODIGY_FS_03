@@ -38,7 +38,6 @@ const Signin = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minHeight: '100vh',
                 padding: 3,
                 backgroundColor: '#f5f5f5'
             }}
@@ -78,11 +77,7 @@ const Signin = () => {
                 >
                     {loading ? "Signing in..." : "Sign in"}
                 </Button>
-                {
-                    error && (
-                        <p>problem signing in</p>
-                    )
-                }
+                {error && <Typography color="error" sx={{ mt: 2 }}>Wrong Credentials, Try Again</Typography>}
             </form>
         </Box>
     );

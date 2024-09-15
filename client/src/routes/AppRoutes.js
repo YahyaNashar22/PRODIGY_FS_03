@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import HeaderFooterOutlet from "./HeaderFooterOutlet.js";
+import DashboardOutlet from "./DashboardOutlet.js";
 import ProtectedRoute from "./ProtectedRoutes.js";
 import Loading from "../components/Loading.js";
 import NotFound from "../components/NotFound.js";
@@ -66,11 +67,13 @@ const AppRoutes = () => {
 
             { /* Dashboard Protected Route */}
             <Route element={<ProtectedRoute />}>
-                <Route path='/dashboard' element={
-                    <Suspense fallback={<Loading />}>
-                        <LazyDashboard />
-                    </Suspense>
-                } />
+                <Route exact path="/dashboard" element={<DashboardOutlet />}>
+                    <Route path="/dashboard" element={
+                        <Suspense fallback={<Loading />}>
+                            <LazyDashboard />
+                        </Suspense>
+                    } />
+                </Route>
             </Route>
             { /* Not Found Route */}
             <Route path="/*" element={<NotFound />} />

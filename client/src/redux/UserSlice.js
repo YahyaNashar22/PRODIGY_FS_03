@@ -11,6 +11,20 @@ export const signinUser = createAsyncThunk(
     }
 )
 
+export const signupUser = createAsyncThunk(
+    'user/singinUser',
+    async (userCredentials) => {
+        const request = axios.post(`${process.env.REACT_APP_BACKEND_URL}users/signup`, userCredentials, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        const response = (await request).data.payload;
+        localStorage.setItem('user', JSON.stringify(response));
+        return response;
+    }
+)
+
 export const fetchUser = createAsyncThunk(
     'user/fetchUser',
     async (userId) => {

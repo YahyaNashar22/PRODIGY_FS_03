@@ -10,6 +10,14 @@ export const signup = async (req, res) => {
         const { username, firstName, lastName, phone, password } = req.body;
         const profilePicture = req.file?.filename;
 
+        console.log('profilePicture: ' + profilePicture);
+
+        console.log('req file: ' + req.file);
+
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded!' });
+        }
+
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
 

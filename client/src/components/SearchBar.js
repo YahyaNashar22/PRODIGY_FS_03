@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 const SearchBar = ({ setSearchQuery }) => {
 
     return (
-        <Box sx={{ width: '100%', textAlign: 'center', mb: 4 }}>
+        <Box sx={{ width: '100%', textAlign: 'center', mb: 4, mt: 10 }}>
             <Typography variant="h6" sx={{ mb: 2, fontFamily: 'monospace, sans-serif', fontWeight: 'bold', fontSize: '1.8rem' }}>
                 Looking for something specific?
             </Typography>
