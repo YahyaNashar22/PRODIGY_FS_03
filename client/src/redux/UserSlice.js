@@ -33,6 +33,11 @@ const userSlice = createSlice({
                 const updatedCart = [...state.user.cart, action.payload];
                 state.user.cart = updatedCart;
             }
+        },
+        signOutUser: (state) => {
+            state.user = null;
+            state.error = null;
+            localStorage.removeItem('user'); // Clear the user from localStorage
         }
     },
     extraReducers: (builder) => {
@@ -67,6 +72,6 @@ const userSlice = createSlice({
     }
 });
 
-export const { addToCart } = userSlice.actions;
+export const { addToCart, signOutUser } = userSlice.actions;
 
 export default userSlice.reducer;

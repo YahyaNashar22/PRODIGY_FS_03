@@ -25,8 +25,6 @@ const ProductCard = ({ product }) => {
         console.log('Cart Items:', cartItems);
     }, [cartItems]);
 
-    console.log(isInCart)
-
     const incrementQuantity = () => setQuantity(quantity + 1);
     const decrementQuantity = () => {
         if (quantity > 1) setQuantity(quantity - 1);
@@ -59,7 +57,7 @@ const ProductCard = ({ product }) => {
         if (isInCart) {
             dispatch(removeFromCart({ productId: product._id }));
         } else {
-            dispatch(addToCart({ productId: product._id, quantity }));
+            dispatch(addToCart({ productId: product._id, quantity, image: product.image, name: product.name, price: product.price}));
             console.log('removed')
         }
     };

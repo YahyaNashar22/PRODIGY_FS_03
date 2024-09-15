@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Menu, MenuItem, IconButton, Button } from '@mui/material';
+import Swal from "sweetalert2";
 
 import styles from "../styles/Navbar.module.css";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { signOutUser } from '../redux/UserSlice';
 
 const Navbar = ({ setIsOpen }) => {
     const { user, loading } = useSelector((state) => state.user);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -18,7 +22,29 @@ const Navbar = ({ setIsOpen }) => {
         setAnchorEl(null);
     };
 
-    console.log(user)
+    const handleSignout = () => {
+        Swal.fire({
+            title: "Going so soon?",
+            text: "We will be missing you!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sign Out"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(signOutUser());
+                Swal.fire({
+                    title: "Signed out successfully!",
+                    text: "You have been reverted to the home page",
+                    icon: "success"
+                });
+                navigate('/');
+            }
+        });
+
+    }
+
 
     return (
         <nav className={styles.wrapper}>
@@ -56,13 +82,14 @@ const Navbar = ({ setIsOpen }) => {
                                 backgroundColor: "var(--secondary-red)"
                             }
                         }}>
-                            <Button className={styles.menuLink} sx={{ color: '#fff' }}>Sign Out</Button>
+                            <Button className={styles.menuLink} sx={{ color: '#fff', '&:hover': { backgroundColor: 'transparent' } }} onClick={handleSignout}>Sign Out</Button>
                         </MenuItem>
                     </Menu>
                 </div>
                 :
                 <Link to="/sign-in-up" className={styles.singIn}>Sign in</Link>
             }
+
         </nav>
     )
 }
