@@ -10,7 +10,6 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const Header = () => {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-
     const [isOpen, setIsOpen] = useState(false);
 
     const handleBurgerClick = () => {
@@ -63,11 +62,11 @@ const Header = () => {
                     isOpen ? (
                         <div className={styles.responsiveNavBars}>
                             <CloseIcon onClick={handleBurgerClick} fontSize='large' />
-                            <Navbar />
+                            <Navbar setIsOpen={setIsOpen} />
                         </div>
                     ) : <MenuIcon fontSize='large' onClick={handleBurgerClick} />
                     :
-                    <Navbar />
+                    <Navbar setIsOpen={setIsOpen} />
             }
         </header>
     )

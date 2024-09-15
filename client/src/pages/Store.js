@@ -44,10 +44,6 @@ const Store = () => {
         }
     }
 
-    console.log(products);
-    console.log(categories);
-    console.log(searchQuery)
-
     useEffect(() => {
         handleProductFetch();
         handleCategoryFetch();

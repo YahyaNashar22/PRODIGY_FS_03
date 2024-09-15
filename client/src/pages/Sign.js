@@ -1,8 +1,11 @@
 import React from 'react'
+import Signin from '../components/Signin'
 
 const Sign = () => {
     return (
-        <main>Sign</main>
+        <main>
+            <Signin />
+        </main>
     )
 }
 

@@ -80,3 +80,26 @@
     margin-top: 10px;
   }
 }
+
+.profileContainer {
+  position: relative;
+}
+
+.profileButton {
+  padding: 0;
+}
+
+.profilePicture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menuLink , .menuLink:visited{
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}

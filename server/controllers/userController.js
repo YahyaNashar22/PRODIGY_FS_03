@@ -160,3 +160,43 @@ export const fetchAllUsers = async (req, res) => {
         console.log(error)
     }
 }
+
+
+// Fetch a single user by ID
+export const getOneUserById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Find the user by ID and populate related fields like favorites and orderHistory if needed
+        const user = await User.findById(id).populate(["favorites", "orderHistory"]);
+
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({
+                message: 'User not found'
+            });
+        }
+
+        // Return the user data
+        const token = createToken(user);
+        const decoded = verifyToken(token);
+
+        res.cookie("userToken", token, {
+            secure: true,
+            httpOnly: true,
+            sameSite: "None"
+        }).status(200).json({
+            message: "refetch successful",
+            payload: decoded
+        })
+
+
+    } catch (error) {
+        // Handle errors
+        res.status(500).json({
+            message: "Error fetching user",
+            error: error.message
+        });
+        console.log(error);
+    }
+};

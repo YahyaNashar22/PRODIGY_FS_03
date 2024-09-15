@@ -13,6 +13,8 @@ const LazyAboutUs = lazy(() => import("../pages/AboutUs.js"));
 const LazyContactUs = lazy(() => import("../pages/ContactUs.js"));
 const LazySign = lazy(() => import("../pages/Sign.js"));
 const LazyDashboard = lazy(() => import("../pages/Dashboard.js"));
+const LazyProfile = lazy(() => import("../pages/Profile.js"));
+const LazyCart = lazy(() => import("../pages/Cart.js"));
 
 const AppRoutes = () => {
     return (
@@ -39,6 +41,18 @@ const AppRoutes = () => {
                 <Route path="/contact-us" element={
                     <Suspense fallback={<Loading />}>
                         <LazyContactUs />
+                    </Suspense>
+                } />
+
+                <Route path="/profile" element={
+                    <Suspense fallback={<Loading />}>
+                        <LazyProfile />
+                    </Suspense>
+                } />
+
+                <Route path="/cart" element={
+                    <Suspense fallback={<Loading />}>
+                        <LazyCart />
                     </Suspense>
                 } />
 
