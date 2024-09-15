@@ -26,6 +26,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("images"));
 
 // Routes for managing models
 app.use('/users', userRouter);
